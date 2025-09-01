@@ -33,10 +33,55 @@ package org.unp.plp.interprete;
 
 %%
 
+world
+  {  
+      return Parser.WORLD;
+  }
+
+x
+  {
+   return Parser.X; 
+  }
+
+put {return Parser.PUT;}
+gold {return Parser.GOLD;}
+hero {return Parser.HERO;}
+wumpus {return Parser.WUMPUS;}
+pit {return Parser.PIT;}
+in {return Parser.IN;}
+i {return Parser.I;}
+j {return Parser.J;}
+print {return Parser.PRINT;}
+
+\(   { return Parser.PARENTESIS_ABRE; }
+\)   { return Parser.PARENTESIS_CIERRA; }
+
+\[  { return Parser.CORCHETE_ABRE; }
+\]   { return Parser.CORCHETE_CIERRA; }
+
+= {return Parser.IGUAL;}
+\< {return Parser.MENOR;}
+> {return Parser.MAYOR;}
+>= {return Parser.MAYORI;}
+\<= {return Parser.MENORI;}
+
+
+[\-\+\/\*] {
+    /** Deja pasar los caracteres únicos como literales **/
+    /** No es ninguna expresión regular, sólo los caracteres literales **/
+    yyparser.yylval = yytext();
+    return yytext().charAt(0);
+  }
+,
+{return Parser.COMA;}
+
 [0-9]+
-   {  yyparser.yylval = new Integer(yytext());
+   {  yyparser.yylval = Integer.valueOf(yytext());
       return Parser.CONSTANT;
    }
+
+
+
 
 \r|\n|\r\n
   { // lleva la cuenta de lineas
