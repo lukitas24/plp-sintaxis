@@ -60,29 +60,71 @@ List<Celda> filtrarCeldas(String coord, String op, int valor) {
     return resultado;
 }
 
-void imprimirMundo() {
-    System.out.println("=== Wumpus World (" + filas + "x" + columnas + ") ===");
+void imprimirMundoCSV() {
+    // Encabezado: mundo
+    System.out.println("world," + filas + "," + columnas);
 
+    // Listado de elementos con coordenadas
     for (int i = 0; i < filas; i++) {
         for (int j = 0; j < columnas; j++) {
             ELEMENTO elem = world[i][j];
-            String simbolo = ".";
+            if (elem != null) {
+                switch (elem) {
+                    case HERO -> System.out.println("hero," + i + "," + j);
+                    case GOLD -> System.out.println("gold," + i + "," + j);
+                    case WUMPUS -> System.out.println("wumpus," + i + "," + j);
+                    case PIT -> System.out.println("pit," + i + "," + j);
+                }
+            }
+        }
+    }
+    imprimirMundoLindo();
+}
+
+void imprimirMundoLindo() {
+    // Encabezado del mundo
+    System.out.println("╔════════════════════════════╗");
+    System.out.println("║   Wumpus World (" + filas + "x" + columnas + ")   ║");
+    System.out.println("╚════════════════════════════╝");
+
+    // Encabezados de columnas
+    System.out.print("     ");
+    for (int j = 0; j < columnas; j++) {
+        System.out.printf(" %2d ", j);
+    }
+    System.out.println();
+
+    // Separador
+    System.out.print("    ");
+    for (int j = 0; j < columnas; j++) {
+        System.out.print("────");
+    }
+    System.out.println();
+
+    // Filas con índices
+    for (int i = 0; i < filas; i++) {
+        System.out.printf("%2d │", i);
+        for (int j = 0; j < columnas; j++) {
+            ELEMENTO elem = world[i][j];
+            String simbolo = " . ";
 
             if (elem != null) {
                 switch (elem) {
-                    case HERO -> simbolo = "H";
-                    case GOLD -> simbolo = "G";
-                    case WUMPUS -> simbolo = "W";
-                    case PIT -> simbolo = "P";
+                    case HERO -> simbolo = " H ";
+                    case GOLD -> simbolo = " G ";
+                    case WUMPUS -> simbolo = " W ";
+                    case PIT -> simbolo = " P ";
                 }
             }
 
-            System.out.print(simbolo + "   "); 
+            System.out.print(simbolo);
         }
-        System.out.println(); 
+        System.out.println();
     }
+
     System.out.println("=================================");
 }
+
 
 public int getFilas() { return filas; }
 public int getColumnas() { return columnas; }

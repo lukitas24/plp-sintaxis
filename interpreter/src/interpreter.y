@@ -238,7 +238,7 @@ operador_primario
 
 
  imprimir
- : PRINT WORLD {world.imprimirMundo();}
+ : PRINT WORLD {world.imprimirMundoCSV();}
  ;
 
 
