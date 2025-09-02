@@ -30,6 +30,7 @@
 %token MAYORI
 %token MENORI
 %token PRINT
+%token REM
 
 
 

@@ -28,7 +28,7 @@ public class WumpusWorld {
 
 	void removerElemento(ELEMENTO elem, Celda celda){
         if(world[celda.i][celda.j]==elem){
-            world[celda.i][celda.j] = elem;
+            world[celda.i][celda.j] = null;
             }
     	}
 

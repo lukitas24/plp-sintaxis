@@ -44,6 +44,7 @@ x
   }
 
 put {return Parser.PUT;}
+rem {return Parser.REM;}
 gold {return Parser.GOLD;}
 hero {return Parser.HERO;}
 wumpus {return Parser.WUMPUS;}

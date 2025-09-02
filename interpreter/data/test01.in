@@ -2,5 +2,7 @@ world 7x8
 put hero in (0,0)
 put gold in (3,4)
 put wumpus in (3,2)
-put pit in [j+2<i*3 , i=j]
+put pit in [i=j, i>1]
+rem pit in [i=3]
+rem pit in (2,2)
 print world
